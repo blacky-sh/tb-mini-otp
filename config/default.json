@@ -28,5 +28,5 @@
       "passwordField": "pin"
     }
   },
-  "mongodb": "mongodb://localhost:27017/tb_mini_otp"
+  "mongodb": "mongodb+srv://admin:admin@cluster0.4ko7fyz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 }
