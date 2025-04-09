@@ -1,0 +1,76 @@
+{
+  "name": "tb-mini-otp",
+  "description": "",
+  "version": "0.0.0",
+  "homepage": "",
+  "private": true,
+  "main": "src",
+  "keywords": [
+    "feathers"
+  ],
+  "author": {
+    "name": "Shehabdin Ahmed Ali",
+    "email": "shahabahmed20001@gmail.com"
+  },
+  "contributors": [],
+  "bugs": {},
+  "directories": {
+    "lib": "src",
+    "test": "test/",
+    "config": "config/"
+  },
+  "engines": {
+    "node": "^20.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "scripts": {
+    "test": "npm run lint && npm run compile && npm run mocha",
+    "lint": "eslint src/. test/. --config .eslintrc.json --ext .ts --fix",
+    "dev": "ts-node-dev --no-notify src/",
+    "start": "npm run compile && node lib/",
+    "mocha": "mocha --require ts-node/register --require source-map-support/register \"test/**/*.ts\" --recursive --exit",
+    "compile": "shx rm -rf lib/ && tsc"
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ],
+    "ignore": []
+  },
+  "types": "lib/",
+  "dependencies": {
+    "@feathersjs/authentication": "^4.5.18",
+    "@feathersjs/authentication-local": "^4.5.18",
+    "@feathersjs/authentication-oauth": "^4.5.18",
+    "@feathersjs/configuration": "^4.5.17",
+    "@feathersjs/errors": "^4.5.17",
+    "@feathersjs/express": "^4.5.18",
+    "@feathersjs/feathers": "^4.5.17",
+    "@feathersjs/socketio": "^4.5.18",
+    "@feathersjs/transport-commons": "^5.0.33",
+    "bcryptjs": "^3.0.2",
+    "compression": "^1.8.0",
+    "cors": "^2.8.5",
+    "feathers-mongoose": "^8.5.1",
+    "helmet": "^5.1.1",
+    "mongodb-core": "^3.2.7",
+    "mongoose": "^6.13.8",
+    "serve-favicon": "^2.5.0",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.7.5",
+    "@types/cors": "^2.8.17",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/mocha": "^10.0.10",
+    "@types/serve-favicon": "^2.5.7",
+    "@typescript-eslint/eslint-plugin": "^8.29.1",
+    "@typescript-eslint/parser": "^8.29.1",
+    "axios": "^1.8.4",
+    "eslint": "^8.57.1",
+    "mocha": "^10.8.2",
+    "shx": "^0.4.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.5"
+  }
+}
