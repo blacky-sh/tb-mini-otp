@@ -53,10 +53,24 @@ export default function (app: Application): void {
 
         // If PIN is provided, verify it
         if (pin) {
-          const isValidPin = await bcrypt.compare(pin, existingUser.pin);
-          if (isValidPin) {
-            return { message: "Authenticated successfully" };
-          } else {
+          try {
+            // Call the authentication service programmatically
+            const authResult = await app.service("authentication").create(
+              {
+                strategy: "local",
+                phone,
+                pin,
+              },
+              {}
+            );
+
+            return {
+              message: "Authenticated successfully",
+              accessToken: authResult.accessToken, // Return the JWT token
+              user: authResult.user, // Return the authenticated user
+            };
+          } catch (error) {
+            console.error("Authentication error:", error);
             throw new BadRequest("Invalid PIN");
           }
         }
@@ -102,11 +116,8 @@ export default function (app: Application): void {
         throw new BadRequest("OTP has expired. Please verify again.");
       }
 
-      // Hash the PIN before storing it
-      const hashedPin = await bcrypt.hash(pin, 10);
-
       // Update the user's PIN
-      await usersService.patch(id, { pin: hashedPin });
+      await usersService.patch(id, { pin: pin });
 
       return { message: "PIN set successfully" };
     },
